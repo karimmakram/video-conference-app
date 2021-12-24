@@ -108,7 +108,7 @@ const setUnmute = () => {
 
 const setMute = () => {
   const html = ` <i  class="unmute fas fa-microphone-slash"></i>
-  <span>Mute</span>`
+  <span>UnMute</span>`
   document.querySelector('.main-mute-button').innerHTML = html
 }
 
@@ -126,12 +126,12 @@ const stopPlayVideo = () => {
 }
 const setPlay = () => {
   const html = ` <i  class="fas fa-video"></i>
-  <span>Play video</span>`
+  <span>Stop video</span>`
   document.querySelector('.main-video-button').innerHTML = html
 }
 
 const setStop = () => {
   const html = ` <i  class="stop fas fa-video-slash"></i>
-  <span>Stop video</span>`
+  <span>Play video</span>`
   document.querySelector('.main-video-button').innerHTML = html
 }
