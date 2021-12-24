@@ -18,29 +18,26 @@ getUserMedia(
     videoStream = stream
     addVideoStream(myVideo, stream)
     ///// becouse insire video loded
+    socket.on('user-connected', userId => {
+      newUserConnected(userId, stream)
+    })
   }
 )
 
 // open peer connection
 peer.on('open', id => {
-  console.log(id)
   socket.emit('join-room', roomId, id)
 })
 
 // when new user get connect with room
-socket.on('user-connected', userId => {
-  newUserConnected(userId)
-})
 
 // call peer and share stream
-const newUserConnected = userId => {
-  getUserMedia({ video: true, audio: true }, function(stream) {
-    var call = peer.call(userId, stream)
-    const video = document.createElement('video')
-    video.muted = true
-    call.on('stream', function(remoteStream) {
-      addVideoStream(video, remoteStream)
-    })
+const newUserConnected = (userId, stream) => {
+  var call = peer.call(userId, stream)
+  const video = document.createElement('video')
+  video.muted = true
+  call.on('stream', function(remoteStream) {
+    addVideoStream(video, remoteStream)
   })
 }
 
